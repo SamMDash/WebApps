@@ -1,5 +1,5 @@
 import { React2AngularBridgeBuilder } from "../utils/bridge-builder";
-import AIClinicalAssistant from "../../../../ai-integration/frontend-next/app/AIClinicalAssistant";
+import AIClinicalAssistant from "./AIClinicalAssistant";
 
 const MODULE_NAME = "bahmni.mfe.aiAssistant";
 angular.module(MODULE_NAME, []);
