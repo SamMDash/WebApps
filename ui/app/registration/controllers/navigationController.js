@@ -50,7 +50,7 @@ angular.module('bahmni.registration')
                 closeBtn.style.background = 'transparent';
                 closeBtn.style.border = 'none';
                 closeBtn.style.cursor = 'pointer';
-                closeBtn.onclick = function() {
+                closeBtn.onclick = function () {
                     sidebar.remove();
                 };
                 sidebar.appendChild(closeBtn);
@@ -60,7 +60,7 @@ angular.module('bahmni.registration')
                 // Dynamically load the AI Assistant bundle
                 var script = document.createElement('script');
                 script.src = '/ui/app/micro-frontends-dist/ai-assistant.min.js';
-                script.onload = function() {
+                script.onload = function () {
                     // Render the Angular wrapper for the AIClinicalAssistant React component
                     var $injector = angular.element(document.body).injector();
                     var $compile = $injector.get('$compile');
