@@ -6,27 +6,26 @@ on:
       - 'release-*'
     tags:
       - '[0-9]+.[0-9]+.[0-9]+'
-  workflow_run:
-    workflows: [Pull Translations from Transifex]
-    types: [completed]
-    branches:
-      - master
-      - 'release-*'
   workflow_dispatch:
 
 jobs:
-  build-publish-docker-helm:
-    name: Build & Publish Docker Image & Helm Chart
+  build-publish-docker:
+    name: Build & Publish Docker Image
     runs-on: ubuntu-latest
     env:
       HELM_CHART_PATH: package/helm/
     steps:
+      # Step 1: Checkout code
       - uses: actions/checkout@v2
+
+      # Step 2: Set ARTIFACT_VERSION
       - name: Set env.ARTIFACT_VERSION
         run: |
           wget -q https://raw.githubusercontent.com/Bahmni/bahmni-infra-utils/main/setArtifactVersion.sh && chmod +x setArtifactVersion.sh
           ./setArtifactVersion.sh
           rm setArtifactVersion.sh
+
+      # Step 3: Node.js and Ruby setup for frontend build
       - name: Use Node.js 14.x
         uses: actions/setup-node@v1
         with:
@@ -35,10 +34,14 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: 3.1
+
+      # Step 4: Install frontend dependencies globally
       - run: npm install -g bower
       - run: npm install -g grunt-cli
       - run: gem install compass
       - run: npm install --global yarn
+
+      # Step 5: Micro-frontends build & test
       - name: micro-frontends | install dependencies
         working-directory: micro-frontends
         run: yarn install --frozen-lock-file
@@ -48,63 +51,63 @@ jobs:
       - name: micro-frontends | build
         working-directory: micro-frontends
         run: yarn build
+
+      # Step 6: Package UI
       - name: Package
         run: cd ui && yarn cache clean && /bin/bash ./scripts/package.sh
+
+      # Step 7: Setup QEMU for multi-arch Docker builds
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
-      - name: Push Translations to Transifex
-        run: |
-          curl -o transifex.sh https://raw.githubusercontent.com/Bahmni/bahmni-infra-utils/main/transifex.sh
-          chmod +x transifex.sh
-          ./transifex.sh push
-          rm transifex.sh
-        env:
-          TX_TOKEN: ${{ secrets.TX_TOKEN }}
+
+      # Step 8: Transifex step disabled (you don't have TX_TOKEN)
+      # - name: Push Translations to Transifex
+      #   run: |
+      #     curl -o transifex.sh https://raw.githubusercontent.com/Bahmni/bahmni-infra-utils/main/transifex.sh
+      #     chmod +x transifex.sh
+      #     ./transifex.sh push
+      #     rm transifex.sh
+      #   env:
+      #     TX_TOKEN: ${{ secrets.TX_TOKEN }}
+
+      # Step 9: Setup Docker Buildx
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
-      - name: Login to DockerHub
-        uses: docker/login-action@v2 
+
+      # Step 10: Login to Docker Hub using your secrets
+      - name: Docker - Login
+        uses: docker/login-action@v2
         with:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_TOKEN }}
-      - name: Docker Build and push
+
+      # Step 11: Build & push Docker image to YOUR Docker Hub (not Bahmni)
+      - name: Docker Build and Push
         uses: docker/build-push-action@v3
         with:
           context: .
-          platforms: linux/amd64,linux/arm64
           file: package/docker/Dockerfile
+          platforms: linux/amd64,linux/arm64
           push: true
-          tags: bahmni/bahmni-web:${{ env.ARTIFACT_VERSION }},bahmni/bahmni-web:latest
+          # Changed tags to push under your username
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/bahmni-web:${{ env.ARTIFACT_VERSION }},${{ secrets.DOCKER_HUB_USERNAME }}/bahmni-web:latest
+
+      # Step 12: Update Helm values (optional, still local)
       - name: Update Version and Image Tag
         run: |
           yq --inplace '.image.tag = "${{ env.ARTIFACT_VERSION }}"' $HELM_CHART_PATH/values.yaml
           yq --inplace '.version = "${{ env.ARTIFACT_VERSION }}"' $HELM_CHART_PATH/Chart.yaml
+
+      # Step 13: Helm Lint (optional)
       - name: Helm Lint
         run: helm lint $HELM_CHART_PATH
 
+      # Step 14: Helm Package (optional)
       - name: Helm Package
         run: helm package $HELM_CHART_PATH
 
-      - name: Checkout Charts Repository
-        uses: actions/checkout@v2
-        with:
-          repository: Bahmni/helm-charts
-          ref: gh-pages
-          path: helm-charts
-          persist-credentials: false
-
-      - name: Copy Helm Archive
-        run: cp bahmni-web-${{ env.ARTIFACT_VERSION }}.tgz helm-charts/bahmni-web/
-
-      - name: Helm Index
-        working-directory: helm-charts/
-        run: helm repo index --merge index.yaml --url https://bahmni.github.io/helm-charts/  .
-
-      - name: Commit and Push Chart Repository
-        working-directory: helm-charts/
-        run: |
-          git config user.name ${{ secrets.BAHMNI_USERNAME}}
-          git config user.email ${{ secrets.BAHMNI_EMAIL}}
-          git add .
-          git commit -m "Release of bahmni-web-${{ env.ARTIFACT_VERSION }}"
-          git push 'https://${{ secrets.BAHMNI_USERNAME}}:${{ secrets.BAHMNI_PAT}}@github.com/bahmni/helm-charts.git' gh-pages
+      # Step 15: Helm push steps disabled (you don't have access to Bahmni repo)
+      # - name: Checkout Charts Repository
+      # - name: Copy Helm Archive
+      # - name: Helm Index
+      # - name: Commit and Push Chart Repository
