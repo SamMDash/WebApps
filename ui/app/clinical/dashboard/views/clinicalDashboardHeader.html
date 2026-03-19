@@ -99,7 +99,10 @@
                 <button ng-if="::!clinicalDashboardConfig.quickPrints" class="dialog-button-group print" ng-click="printDashboard()"
                         accesskey="{{'CLINICAL_PRINT_ACCESS_KEY'| translate}}" ng-bind-html="'CLINICAL_PRINT_TRANSLATION_KEY'|translate">
                     <i class="fa fa-print"></i>
-
+                </button>
+                <!-- AI Assistant Button for Patient Dashboard -->
+                <button class="dialog-button-group ai-assistant" ng-click="openAIAssistant()" title="AI Assistant">
+                    <i class="fa fa-robot"></i>
                 </button>
                 <div class="dashboard-date-picker" ng-controller="PatientListHeaderController">
                     <div class="retro-date-widget-wrapper fr">

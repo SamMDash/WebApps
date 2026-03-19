@@ -8,8 +8,15 @@ angular.module('bahmni.clinical')
             // AI Assistant Button Handler
             $scope.openAIAssistant = function () {
                 var url = 'http://ai-integration-frontend:5001/?patientUuid=' + $stateParams.patientUuid;
-                // Open in modal (preferred) or new window
-                window.open(url, 'AIAssistant', 'width=400,height=700');
+                if (window.ngDialog) {
+                    window.ngDialog.open({
+                        template: '<iframe src="' + url + '" width="100%" height="600px" frameborder="0"></iframe>',
+                        plain: true,
+                        className: 'ngdialog-theme-default ai-assistant-modal'
+                    });
+                } else {
+                    window.open(url, 'AIAssistant', 'width=400,height=700');
+                }
             };
             $scope.patient = patientContext.patient;
             $scope.activeVisit = $scope.visitHistory.activeVisit;
