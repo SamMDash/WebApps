@@ -5,12 +5,12 @@ angular.module('bahmni.clinical')
         '$state', 'spinner', 'visitSummary', 'appService', '$stateParams', 'diseaseTemplateService', 'patientContext', '$location', '$filter',
         function ($scope, clinicalAppConfigService, clinicalDashboardConfig, printer,
             $state, spinner, visitSummary, appService, $stateParams, diseaseTemplateService, patientContext, $location, $filter) {
-                        // AI Assistant Button Handler
-                        $scope.openAIAssistant = function() {
-                            var url = 'http://ai-integration-frontend:5001/?patientUuid=' + $stateParams.patientUuid;
-                            // Open in modal (preferred) or new window
-                            window.open(url, 'AIAssistant', 'width=400,height=700');
-                        };
+            // AI Assistant Button Handler
+            $scope.openAIAssistant = function () {
+                var url = 'http://ai-integration-frontend:5001/?patientUuid=' + $stateParams.patientUuid;
+                // Open in modal (preferred) or new window
+                window.open(url, 'AIAssistant', 'width=400,height=700');
+            };
             $scope.patient = patientContext.patient;
             $scope.activeVisit = $scope.visitHistory.activeVisit;
             $scope.activeVisitData = {};
