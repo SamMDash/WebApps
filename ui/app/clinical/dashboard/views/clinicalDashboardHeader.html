@@ -36,6 +36,10 @@
                     <i class="fa fa-save"></i>
                     <span class="text" ng-bind-html="'CLINICAL_SAVE_TRANSLATION_KEY'| translate"></span>
                 </button>
+                <!-- AI Assistant Button -->
+                <button class="dialog-button-group ai-assistant" ng-click="openAIAssistant()" title="AI Assistant">
+                    <i class="fa fa-robot"></i>
+                </button>
             </div>
         </div>
         <ng-include src="'common/views/mobileHeader.html'"></ng-include>
