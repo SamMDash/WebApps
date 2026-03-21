@@ -12,16 +12,21 @@ const AIAdvisor = ({ patientId, doctorId }) => {
     setError('');
     setResponse('');
     try {
-      const res = await fetch('/api/ai-advice', {
+      const res = await fetch('/api/clinical-analysis', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ query: input, patientId, doctorId })
+        body: JSON.stringify({ patientId, doctorId, query: input })
       });
-      if (!res.ok) throw new Error('AI service error');
-      const data = await res.json();
-      setResponse(data.result);
+      let data;
+      try {
+        data = await res.json();
+      } catch (jsonErr) {
+        throw new Error('Invalid response from backend');
+      }
+      if (!res.ok) throw new Error(data.error || 'AI service error');
+      setResponse(JSON.stringify(data, null, 2));
     } catch (err) {
-      setError(err.message);
+      setError(err.message || 'Unknown error');
     } finally {
       setLoading(false);
     }
@@ -40,9 +45,22 @@ const AIAdvisor = ({ patientId, doctorId }) => {
         />
         <button type="submit" disabled={loading}>Ask AI</button>
       </form>
-      {loading && <div style={{ color: '#1976d2' }}>Loading...</div>}
-      {error && <div style={{ color: 'red' }}>Error: {error}</div>}
-      {response && <div style={{ marginTop: '1em', background: '#f5f5f5', padding: '1em', borderRadius: 4 }}><strong>AI Response:</strong> {response}</div>}
+      {loading && (
+        <div style={{ color: '#1976d2', marginTop: '1em' }}>
+          <span className="loader" style={{ marginRight: '0.5em' }}>⏳</span> Loading AI response...
+        </div>
+      )}
+      {error && (
+        <div style={{ color: 'red', marginTop: '1em' }}>
+          <strong>Error:</strong> {error}
+        </div>
+      )}
+      {response && (
+        <div style={{ marginTop: '1em', background: '#f5f5f5', padding: '1em', borderRadius: 4 }}>
+          <strong>AI Response:</strong>
+          <pre style={{ whiteSpace: 'pre-wrap', wordBreak: 'break-word' }}>{response}</pre>
+        </div>
+      )}
     </div>
   );
 };
