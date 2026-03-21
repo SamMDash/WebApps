@@ -6,7 +6,7 @@ angular.module('bahmni.clinical')
         function ($scope, clinicalAppConfigService, clinicalDashboardConfig, printer,
             $state, spinner, visitSummary, appService, $stateParams, diseaseTemplateService, patientContext, $location, $filter) {
             // AI Assistant Button Handler
-                $scope.openAIAssistant = function () {
+            $scope.openAIAssistant = function () {
                     var patientUuid = $stateParams.patientUuid;
                     var doctorUuid = '';
                     if (window.sessionContext && window.sessionContext.currentProvider && window.sessionContext.currentProvider.uuid) {
