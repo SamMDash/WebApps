@@ -6,18 +6,28 @@ angular.module('bahmni.clinical')
         function ($scope, clinicalAppConfigService, clinicalDashboardConfig, printer,
             $state, spinner, visitSummary, appService, $stateParams, diseaseTemplateService, patientContext, $location, $filter) {
             // AI Assistant Button Handler
-            $scope.openAIAssistant = function () {
-                var url = 'http://ai-integration-frontend:5001/?patientUuid=' + $stateParams.patientUuid;
-                if (window.ngDialog) {
-                    window.ngDialog.open({
-                        template: '<iframe src="' + url + '" width="100%" height="600px" frameborder="0"></iframe>',
-                        plain: true,
-                        className: 'ngdialog-theme-default ai-assistant-modal'
-                    });
-                } else {
-                    window.open(url, 'AIAssistant', 'width=400,height=700');
-                }
-            };
+                $scope.openAIAssistant = function () {
+                    var patientUuid = $stateParams.patientUuid;
+                    var doctorUuid = '';
+                    if (window.sessionContext && window.sessionContext.currentProvider && window.sessionContext.currentProvider.uuid) {
+                        doctorUuid = window.sessionContext.currentProvider.uuid;
+                    } else if (window.currentUser && window.currentUser.uuid) {
+                        doctorUuid = window.currentUser.uuid;
+                    }
+                    var url = 'http://ai-integration-frontend:5001/?patientUuid=' + encodeURIComponent(patientUuid);
+                    if (doctorUuid) {
+                        url += '&doctorUuid=' + encodeURIComponent(doctorUuid);
+                    }
+                    if (window.ngDialog) {
+                        window.ngDialog.open({
+                            template: '<iframe src="' + url + '" width="100%" height="600px" frameborder="0"></iframe>',
+                            plain: true,
+                            className: 'ngdialog-theme-default ai-assistant-modal'
+                        });
+                    } else {
+                        window.open(url, '_blank');
+                    }
+                };
             $scope.patient = patientContext.patient;
             $scope.activeVisit = $scope.visitHistory.activeVisit;
             $scope.activeVisitData = {};
