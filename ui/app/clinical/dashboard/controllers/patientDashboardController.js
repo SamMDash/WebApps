@@ -7,6 +7,7 @@ angular.module('bahmni.clinical')
             $state, spinner, visitSummary, appService, $stateParams, diseaseTemplateService, patientContext, $location, $filter) {
             // AI Assistant Button Handler
             $scope.openAIAssistant = function () {
+                console.log('[AI Assistant] Button clicked');
                 var patientUuid = $stateParams.patientUuid;
                 var doctorUuid = '';
                 if (window.sessionContext && window.sessionContext.currentProvider && window.sessionContext.currentProvider.uuid) {
@@ -14,10 +15,11 @@ angular.module('bahmni.clinical')
                 } else if (window.currentUser && window.currentUser.uuid) {
                     doctorUuid = window.currentUser.uuid;
                 }
-                var url = 'http://ai-integration-frontend:5001/?patientUuid=' + encodeURIComponent(patientUuid);
+                var url = '/ai-assistant?patientUuid=' + encodeURIComponent(patientUuid);
                 if (doctorUuid) {
                     url += '&doctorUuid=' + encodeURIComponent(doctorUuid);
                 }
+                console.log('[AI Assistant] Opening iframe/modal with URL:', url);
                 if (window.ngDialog) {
                     window.ngDialog.open({
                         template: '<iframe src="' + url + '" width="100%" height="600px" frameborder="0"></iframe>',
