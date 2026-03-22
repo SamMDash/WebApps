@@ -17,7 +17,7 @@ module.exports = {
     ipd: "./src/ipd/index.js",
     "next-ui": "./src/next-ui/index.js",
     shared: "./src/shared.js",
-    "ai-assistant": "./src/ai-assistant/index.js",
+    // "ai-assistant": "./src/ai-assistant/index.js", // Removed, file does not exist
   },
   output: {
     path: path.resolve(__dirname, "../ui/app/micro-frontends-dist"),
