@@ -95,10 +95,7 @@ module.exports = {
       },
     ],
   },
-  externals: {
-    react: "React", // Exclude react from the bundled output
-    "react-dom": "ReactDOM", // Exclude react-dom from the bundled output
-  },
+  // Removed externals for react and react-dom to avoid conflict with Module Federation shared configuration
 };
 
 /**
