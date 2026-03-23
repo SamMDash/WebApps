@@ -57,13 +57,11 @@ module.exports = {
         },
         react: {
           singleton: true,
-          eager: true,
-          requiredVersion: dependencies.react,
+          requiredVersion: "18.2.0",
         },
         "react-dom": {
           singleton: true,
-          eager: true,
-          requiredVersion: dependencies["react-dom"],
+          requiredVersion: "18.2.0",
         },
       },
     }),
