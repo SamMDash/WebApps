@@ -8,10 +8,7 @@ const dependencies = packageJson.dependencies;
 module.exports = {
   resolve: {
     extensions: [".tsx", ".ts", ".jsx", ".js", ".json"],
-    alias: {
-      react: path.resolve(__dirname, "./src/__mocks__/globalReact.js"),
-      "react-dom": path.resolve(__dirname, "./src/__mocks__/globalReactDom.js"),
-    },
+    alias: {},
   },
   entry: {
     ipd: "./src/ipd/index.js",
