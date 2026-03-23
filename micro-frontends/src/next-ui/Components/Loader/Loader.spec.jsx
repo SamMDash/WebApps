@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import { IntlProvider } from 'react-intl';
-import renderer from 'react-test-renderer';
+
 import Loader from './Loader';
 
 const messages = {
@@ -20,11 +20,11 @@ describe('Loader Component', () => {
   });
 
   it('matches snapshot', () => {
-    const tree = renderer.create(
+    const { asFragment } = render(
       <IntlProvider locale="en" messages={messages}>
         <Loader />
       </IntlProvider>
-    ).toJSON();
-    expect(tree).toMatchSnapshot();
+    );
+    expect(asFragment()).toMatchSnapshot();
   });
 });
