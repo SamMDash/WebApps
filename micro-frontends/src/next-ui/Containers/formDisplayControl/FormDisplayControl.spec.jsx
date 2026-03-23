@@ -107,11 +107,11 @@ describe("FormDisplayControl Component with Accordion and Non-Accordion", () => 
     );
 
     await waitFor(() => {
-      expect(container.querySelectorAll(".bx--accordion__title")).toHaveLength(
+      expect(container.querySelectorAll(".cds--accordion__title")).toHaveLength(
         1
       );
       expect(
-        container.querySelector(".bx--accordion__title").innerHTML
+        container.querySelector(".cds--accordion__title").innerHTML
       ).toEqual("Pre Anaesthesia Assessment");
       expect(
         container.querySelector(".row-accordion > .form-name-text > .form-link")

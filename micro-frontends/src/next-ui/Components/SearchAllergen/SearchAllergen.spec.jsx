@@ -25,15 +25,15 @@ describe("SearchAllergen", function () {
     const { container } = render(
       <SearchAllergen onChange={onChange} allergens={mockAllergensData} />
     );
-    expect(container.querySelector(".bx--search--xl")).not.toBeNull();
+    expect(container.querySelector(".cds--search")).not.toBeNull();
   });
   it("should show allergens based on the key typed", function () {
     const { container } = render(
       <SearchAllergen onChange={onChange} allergens={mockAllergensData} />
     );
-    const searchInput = container.querySelector(".bx--search-input");
+    const searchInput = container.querySelector(".cds--search-input");
     fireEvent.change(searchInput, { target: { value: "pea" } });
-    const tag = container.querySelector(".bx--tag");
+    const tag = container.querySelector(".cds--tag");
     expect(tag).not.toBeNull();
     expect(screen.getByText("Peanuts")).not.toBeNull();
     expect(tag.textContent).toEqual("Food");
@@ -43,7 +43,7 @@ describe("SearchAllergen", function () {
     const { container } = render(
       <SearchAllergen onChange={onChange} allergens={[]} />
     );
-    const searchInput = container.querySelector(".bx--search-input");
+    const searchInput = container.querySelector(".cds--search-input");
     fireEvent.change(searchInput, { target: { value: "xyz" } });
     expect(screen.getByText("No Allergen found")).not.toBeNull();
   });
@@ -51,7 +51,7 @@ describe("SearchAllergen", function () {
     const { container } = render(
       <SearchAllergen onChange={onChange} allergens={mockAllergensData} />
     );
-    const searchInput = container.querySelector(".bx--search-input");
+    const searchInput = container.querySelector(".cds--search-input");
     fireEvent.change(searchInput, { target: { value: "xyz" } });
     expect(screen.getByText("No Allergen found")).not.toBeNull();
 
@@ -63,12 +63,12 @@ describe("SearchAllergen", function () {
     const { container } = render(
       <SearchAllergen onChange={onChange} allergens={mockAllergensData} />
     );
-    const searchInput = container.querySelector(".bx--search-input");
+    const searchInput = container.querySelector(".cds--search-input");
     fireEvent.change(searchInput, { target: { value: "xyz" } });
     expect(screen.getByText("No Allergen found")).not.toBeNull();
 
     //clear search query
-    const searchBarCloseIcon = container.querySelector(".bx--search-close");
+    const searchBarCloseIcon = container.querySelector(".cds--search-close");
     fireEvent.click(searchBarCloseIcon);
     expect(() => screen.getByText("No Allergen found")).toThrowError();
   });
@@ -77,7 +77,7 @@ describe("SearchAllergen", function () {
         <SearchAllergen onChange={onChange} allergens={mockAllergensData} />
     );
 
-    const searchInput = container.querySelector('.bx--search-input');
+    const searchInput = container.querySelector('.cds--search-input');
     fireEvent.change(searchInput, { target: { value: 'nu' } });
 
     const allergen = screen.getByText('Peanuts');

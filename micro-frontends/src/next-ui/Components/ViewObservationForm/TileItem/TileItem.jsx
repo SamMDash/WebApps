@@ -1,6 +1,6 @@
 import React from "react";
 import propTypes from "prop-types";
-import { Document } from "@carbon/icons-react/next";
+import { Document } from "@carbon/icons-react";
 import { FileViewer } from "../FileViewer/FileViewer";
 import {
   subLabels,

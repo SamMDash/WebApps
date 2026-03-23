@@ -3,80 +3,114 @@
 exports[`SavePopup should render with Add Note when noteId is empty 1`] = `
 <div>
   <div
-    class="bx--modal bx--modal-tall is-visible next-ui ot-notes-popup"
+    class="cds--layer-one cds--modal cds--modal-tall is-visible next-ui ot-notes-popup"
     role="presentation"
   >
     <span
-      class="bx--visually-hidden"
+      class="cds--visually-hidden"
       role="link"
       tabindex="0"
     >
       Focus sentinel
     </span>
     <div
-      aria-label="[object Object]"
       aria-modal="true"
-      class="bx--modal-container"
+      class="cds--modal-container"
       role="dialog"
       tabindex="-1"
     >
       <div
-        class="bx--modal-header"
+        class="cds--modal-header"
       >
-        
-        <h3
-          class="bx--modal-header__heading"
-          id="bx--modal-header__heading--modal-1"
+        <h2
+          class="cds--modal-header__heading"
+          dir="auto"
+          id="cds--modal-header__heading--modal-id-:r1:"
         >
           Add Note
-        </h3>
-        <button
-          aria-label="close"
-          class="bx--modal-close"
-          type="button"
+        </h2>
+        <div
+          class="cds--modal-close-button"
         >
-          <svg
-            aria-hidden="true"
-            class="bx--modal-close__icon"
-            fill="currentColor"
-            focusable="false"
-            height="20"
-            preserveAspectRatio="xMidYMid meet"
-            viewBox="0 0 32 32"
-            width="20"
-            xmlns="http://www.w3.org/2000/svg"
+          <span
+            class="cds--popover-container cds--popover--caret cds--popover--high-contrast cds--popover--left cds--tooltip cds--icon-tooltip"
           >
-            <path
-              d="M24 9.4L22.6 8 16 14.6 9.4 8 8 9.4 14.6 16 8 22.6 9.4 24 16 17.4 22.6 24 24 22.6 17.4 16 24 9.4z"
-            />
-          </svg>
-        </button>
+            <div
+              class="cds--tooltip-trigger__wrapper"
+            >
+              <button
+                aria-label="Close"
+                aria-labelledby="tooltip-:r3:"
+                class="cds--modal-close cds--btn cds--btn--primary cds--btn--icon-only"
+                type="button"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="cds--modal-close__icon"
+                  fill="currentColor"
+                  focusable="false"
+                  height="20"
+                  preserveAspectRatio="xMidYMid meet"
+                  viewBox="0 0 32 32"
+                  width="20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M17.4141 16 24 9.4141 22.5859 8 16 14.5859 9.4143 8 8 9.4141 14.5859 16 8 22.5859 9.4143 24 16 17.4141 22.5859 24 24 22.5859 17.4141 16z"
+                  />
+                </svg>
+              </button>
+            </div>
+            <span
+              aria-hidden="true"
+              class="cds--popover"
+              id="tooltip-:r3:"
+              role="tooltip"
+            >
+              <span
+                class="cds--popover-content cds--tooltip-content"
+              >
+                Close
+              </span>
+              <span
+                class="cds--popover-caret"
+              />
+            </span>
+          </span>
+        </div>
       </div>
       <div
-        aria-labelledby="bx--modal-header__heading--modal-1"
-        class="bx--modal-content"
-        id="bx--modal-body--modal-1"
+        class="cds--layer-two cds--modal-content cds--modal-scroll-content--no-fade"
+        id="cds--modal-body--modal-id-:r1:"
       >
         <div
-          class="bx--form-item"
+          class="cds--form-item"
         >
           <div
-            class="bx--text-area__label-wrapper"
+            class="cds--text-area__label-wrapper"
           >
             <label
-              class="bx--label"
+              class="cds--label"
+              dir="auto"
             >
               Notes
             </label>
           </div>
           <div
-            class="bx--text-area__wrapper"
+            class="cds--text-area__wrapper"
           >
             <textarea
-              class="bx--text-area"
-              cols="50"
+              aria-invalid="false"
+              class="cds--text-area"
               placeholder="Enter a maximum of 150 characters"
               rows="4"
+              style="width: 100%;"
+            />
+            <span
+              aria-atomic="true"
+              aria-live="assertive"
+              class="cds--text-area__counter-alert"
+              role="alert"
             />
           </div>
         </div>
@@ -88,46 +122,49 @@ exports[`SavePopup should render with Add Note when noteId is empty 1`] = `
         >
           <div>
             <div
-              class="bx--form-item"
+              class="cds--form-item"
             >
               <div
-                class="bx--date-picker bx--date-picker--single"
+                class="cds--date-picker cds--date-picker--single"
               >
                 <div
-                  class="bx--date-picker-container"
+                  class="cds--date-picker-container"
                 >
                   <label
-                    class="bx--label"
+                    class="cds--label"
+                    dir="auto"
                     for="date-picker-input-id-start"
                   >
                     Start date
                   </label>
                   <div
-                    class="bx--date-picker-input__wrapper"
+                    class="cds--date-picker-input__wrapper"
                   >
-                    <input
-                      class="bx--date-picker__input flatpickr-input"
-                      id="date-picker-input-id-start"
-                      pattern="\\d{1,2}\\/\\d{1,2}\\/\\d{4}"
-                      placeholder="dd/mm/yyyy"
-                      type="text"
-                    />
-                    <svg
-                      aria-hidden="true"
-                      class="bx--date-picker__icon"
-                      fill="currentColor"
-                      focusable="false"
-                      height="16"
-                      preserveAspectRatio="xMidYMid meet"
-                      role="img"
-                      viewBox="0 0 32 32"
-                      width="16"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M26,4h-4V2h-2v2h-8V2h-2v2H6C4.9,4,4,4.9,4,6v20c0,1.1,0.9,2,2,2h20c1.1,0,2-0.9,2-2V6C28,4.9,27.1,4,26,4z M26,26H6V12h20	V26z M26,10H6V6h4v2h2V6h8v2h2V6h4V10z"
+                    <span>
+                      <input
+                        class="cds--date-picker__input cds--date-picker__input--md flatpickr-input"
+                        id="date-picker-input-id-start"
+                        pattern="\\d{1,2}\\/\\d{1,2}\\/\\d{4}"
+                        placeholder="dd/mm/yyyy"
+                        type="text"
                       />
-                    </svg>
+                      <svg
+                        aria-hidden="true"
+                        class="cds--date-picker__icon"
+                        fill="currentColor"
+                        focusable="false"
+                        height="16"
+                        preserveAspectRatio="xMidYMid meet"
+                        role="img"
+                        viewBox="0 0 32 32"
+                        width="16"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M26,4h-4V2h-2v2h-8V2h-2v2H6C4.9,4,4,4.9,4,6v20c0,1.1,0.9,2,2,2h20c1.1,0,2-0.9,2-2V6C28,4.9,27.1,4,26,4z M26,26H6V12h20 V26z M26,10H6V6h4v2h2V6h8v2h2V6h4V10z"
+                        />
+                      </svg>
+                    </span>
                   </div>
                 </div>
               </div>
@@ -138,46 +175,49 @@ exports[`SavePopup should render with Add Note when noteId is empty 1`] = `
           </div>
           <div>
             <div
-              class="bx--form-item"
+              class="cds--form-item"
             >
               <div
-                class="bx--date-picker bx--date-picker--single"
+                class="cds--date-picker cds--date-picker--single"
               >
                 <div
-                  class="bx--date-picker-container"
+                  class="cds--date-picker-container"
                 >
                   <label
-                    class="bx--label"
+                    class="cds--label"
+                    dir="auto"
                     for="date-picker-input-id-finish"
                   >
                     End date
                   </label>
                   <div
-                    class="bx--date-picker-input__wrapper"
+                    class="cds--date-picker-input__wrapper"
                   >
-                    <input
-                      class="bx--date-picker__input flatpickr-input"
-                      id="date-picker-input-id-finish"
-                      pattern="\\d{1,2}\\/\\d{1,2}\\/\\d{4}"
-                      placeholder="dd/mm/yyyy"
-                      type="text"
-                    />
-                    <svg
-                      aria-hidden="true"
-                      class="bx--date-picker__icon"
-                      fill="currentColor"
-                      focusable="false"
-                      height="16"
-                      preserveAspectRatio="xMidYMid meet"
-                      role="img"
-                      viewBox="0 0 32 32"
-                      width="16"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M26,4h-4V2h-2v2h-8V2h-2v2H6C4.9,4,4,4.9,4,6v20c0,1.1,0.9,2,2,2h20c1.1,0,2-0.9,2-2V6C28,4.9,27.1,4,26,4z M26,26H6V12h20	V26z M26,10H6V6h4v2h2V6h8v2h2V6h4V10z"
+                    <span>
+                      <input
+                        class="cds--date-picker__input cds--date-picker__input--md flatpickr-input"
+                        id="date-picker-input-id-finish"
+                        pattern="\\d{1,2}\\/\\d{1,2}\\/\\d{4}"
+                        placeholder="dd/mm/yyyy"
+                        type="text"
                       />
-                    </svg>
+                      <svg
+                        aria-hidden="true"
+                        class="cds--date-picker__icon"
+                        fill="currentColor"
+                        focusable="false"
+                        height="16"
+                        preserveAspectRatio="xMidYMid meet"
+                        role="img"
+                        viewBox="0 0 32 32"
+                        width="16"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M26,4h-4V2h-2v2h-8V2h-2v2H6C4.9,4,4,4.9,4,6v20c0,1.1,0.9,2,2,2h20c1.1,0,2-0.9,2-2V6C28,4.9,27.1,4,26,4z M26,26H6V12h20 V26z M26,10H6V6h4v2h2V6h8v2h2V6h4V10z"
+                        />
+                      </svg>
+                    </span>
                   </div>
                 </div>
               </div>
@@ -189,18 +229,17 @@ exports[`SavePopup should render with Add Note when noteId is empty 1`] = `
         </div>
       </div>
       <div
-        class="bx--modal-footer bx--btn-set"
+        aria-busy="false"
+        class="cds--modal-footer cds--btn-set"
       >
         <button
-          class="bx--btn bx--btn--secondary"
-          tabindex="0"
+          class="cds--btn cds--btn--secondary"
           type="button"
         >
           Cancel
         </button>
         <button
-          class="bx--btn bx--btn--primary"
-          tabindex="0"
+          class="cds--btn cds--btn--primary"
           type="button"
         >
           Save
@@ -208,7 +247,7 @@ exports[`SavePopup should render with Add Note when noteId is empty 1`] = `
       </div>
     </div>
     <span
-      class="bx--visually-hidden"
+      class="cds--visually-hidden"
       role="link"
       tabindex="0"
     >
@@ -221,83 +260,117 @@ exports[`SavePopup should render with Add Note when noteId is empty 1`] = `
 exports[`SavePopup should render with Update Note when noteId is defined 1`] = `
 <div>
   <div
-    class="bx--modal bx--modal-tall is-visible next-ui ot-notes-popup"
+    class="cds--layer-one cds--modal cds--modal-tall is-visible next-ui ot-notes-popup"
     role="presentation"
   >
     <span
-      class="bx--visually-hidden"
+      class="cds--visually-hidden"
       role="link"
       tabindex="0"
     >
       Focus sentinel
     </span>
     <div
-      aria-label="[object Object]"
       aria-modal="true"
-      class="bx--modal-container"
+      class="cds--modal-container"
       role="dialog"
       tabindex="-1"
     >
       <div
-        class="bx--modal-header"
+        class="cds--modal-header"
       >
-        
-        <h3
-          class="bx--modal-header__heading"
-          id="bx--modal-header__heading--modal-2"
+        <h2
+          class="cds--modal-header__heading"
+          dir="auto"
+          id="cds--modal-header__heading--modal-id-:rc:"
         >
           Update Note
-        </h3>
-        <button
-          aria-label="close"
-          class="bx--modal-close"
-          type="button"
+        </h2>
+        <div
+          class="cds--modal-close-button"
         >
-          <svg
-            aria-hidden="true"
-            class="bx--modal-close__icon"
-            fill="currentColor"
-            focusable="false"
-            height="20"
-            preserveAspectRatio="xMidYMid meet"
-            viewBox="0 0 32 32"
-            width="20"
-            xmlns="http://www.w3.org/2000/svg"
+          <span
+            class="cds--popover-container cds--popover--caret cds--popover--high-contrast cds--popover--left cds--tooltip cds--icon-tooltip"
           >
-            <path
-              d="M24 9.4L22.6 8 16 14.6 9.4 8 8 9.4 14.6 16 8 22.6 9.4 24 16 17.4 22.6 24 24 22.6 17.4 16 24 9.4z"
-            />
-          </svg>
-        </button>
+            <div
+              class="cds--tooltip-trigger__wrapper"
+            >
+              <button
+                aria-label="Close"
+                aria-labelledby="tooltip-:re:"
+                class="cds--modal-close cds--btn cds--btn--primary cds--btn--icon-only"
+                type="button"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="cds--modal-close__icon"
+                  fill="currentColor"
+                  focusable="false"
+                  height="20"
+                  preserveAspectRatio="xMidYMid meet"
+                  viewBox="0 0 32 32"
+                  width="20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M17.4141 16 24 9.4141 22.5859 8 16 14.5859 9.4143 8 8 9.4141 14.5859 16 8 22.5859 9.4143 24 16 17.4141 22.5859 24 24 22.5859 17.4141 16z"
+                  />
+                </svg>
+              </button>
+            </div>
+            <span
+              aria-hidden="true"
+              class="cds--popover"
+              id="tooltip-:re:"
+              role="tooltip"
+            >
+              <span
+                class="cds--popover-content cds--tooltip-content"
+              >
+                Close
+              </span>
+              <span
+                class="cds--popover-caret"
+              />
+            </span>
+          </span>
+        </div>
       </div>
       <div
-        aria-labelledby="bx--modal-header__heading--modal-2"
-        class="bx--modal-content"
-        id="bx--modal-body--modal-2"
+        class="cds--layer-two cds--modal-content cds--modal-scroll-content--no-fade"
+        id="cds--modal-body--modal-id-:rc:"
       >
         <div
-          class="bx--form-item"
+          class="cds--form-item"
         >
           <div
-            class="bx--text-area__label-wrapper"
+            class="cds--text-area__label-wrapper"
           >
             <label
-              class="bx--label"
+              class="cds--label"
+              dir="auto"
             >
               Notes
             </label>
           </div>
           <div
-            class="bx--text-area__wrapper"
+            class="cds--text-area__wrapper"
           >
             <textarea
-              class="bx--text-area"
-              cols="50"
+              aria-invalid="false"
+              class="cds--text-area"
               placeholder="Enter a maximum of 150 characters"
               rows="4"
+              style="width: 100%;"
             >
               notes for the day
             </textarea>
+            <span
+              aria-atomic="true"
+              aria-live="assertive"
+              class="cds--text-area__counter-alert"
+              role="alert"
+            />
           </div>
         </div>
         <div
@@ -308,47 +381,50 @@ exports[`SavePopup should render with Update Note when noteId is defined 1`] = `
         >
           <div>
             <div
-              class="bx--form-item"
+              class="cds--form-item"
             >
               <div
-                class="bx--date-picker bx--date-picker--single"
+                class="cds--date-picker cds--date-picker--single"
               >
                 <div
-                  class="bx--date-picker-container"
+                  class="cds--date-picker-container"
                 >
                   <label
-                    class="bx--label bx--label--disabled"
+                    class="cds--label cds--label--disabled"
+                    dir="auto"
                     for="date-picker-input-id-start"
                   >
                     Start date
                   </label>
                   <div
-                    class="bx--date-picker-input__wrapper"
+                    class="cds--date-picker-input__wrapper"
                   >
-                    <input
-                      class="bx--date-picker__input flatpickr-input"
-                      disabled=""
-                      id="date-picker-input-id-start"
-                      pattern="\\d{1,2}\\/\\d{1,2}\\/\\d{4}"
-                      placeholder="dd/mm/yyyy"
-                      type="text"
-                    />
-                    <svg
-                      aria-hidden="true"
-                      class="bx--date-picker__icon"
-                      fill="currentColor"
-                      focusable="false"
-                      height="16"
-                      preserveAspectRatio="xMidYMid meet"
-                      role="img"
-                      viewBox="0 0 32 32"
-                      width="16"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M26,4h-4V2h-2v2h-8V2h-2v2H6C4.9,4,4,4.9,4,6v20c0,1.1,0.9,2,2,2h20c1.1,0,2-0.9,2-2V6C28,4.9,27.1,4,26,4z M26,26H6V12h20	V26z M26,10H6V6h4v2h2V6h8v2h2V6h4V10z"
+                    <span>
+                      <input
+                        class="cds--date-picker__input cds--date-picker__input--md flatpickr-input"
+                        disabled=""
+                        id="date-picker-input-id-start"
+                        pattern="\\d{1,2}\\/\\d{1,2}\\/\\d{4}"
+                        placeholder="dd/mm/yyyy"
+                        type="text"
                       />
-                    </svg>
+                      <svg
+                        aria-hidden="true"
+                        class="cds--date-picker__icon"
+                        fill="currentColor"
+                        focusable="false"
+                        height="16"
+                        preserveAspectRatio="xMidYMid meet"
+                        role="img"
+                        viewBox="0 0 32 32"
+                        width="16"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M26,4h-4V2h-2v2h-8V2h-2v2H6C4.9,4,4,4.9,4,6v20c0,1.1,0.9,2,2,2h20c1.1,0,2-0.9,2-2V6C28,4.9,27.1,4,26,4z M26,26H6V12h20 V26z M26,10H6V6h4v2h2V6h8v2h2V6h4V10z"
+                        />
+                      </svg>
+                    </span>
                   </div>
                 </div>
               </div>
@@ -359,47 +435,50 @@ exports[`SavePopup should render with Update Note when noteId is defined 1`] = `
           </div>
           <div>
             <div
-              class="bx--form-item"
+              class="cds--form-item"
             >
               <div
-                class="bx--date-picker bx--date-picker--single"
+                class="cds--date-picker cds--date-picker--single"
               >
                 <div
-                  class="bx--date-picker-container"
+                  class="cds--date-picker-container"
                 >
                   <label
-                    class="bx--label bx--label--disabled"
+                    class="cds--label cds--label--disabled"
+                    dir="auto"
                     for="date-picker-input-id-finish"
                   >
                     End date
                   </label>
                   <div
-                    class="bx--date-picker-input__wrapper"
+                    class="cds--date-picker-input__wrapper"
                   >
-                    <input
-                      class="bx--date-picker__input flatpickr-input"
-                      disabled=""
-                      id="date-picker-input-id-finish"
-                      pattern="\\d{1,2}\\/\\d{1,2}\\/\\d{4}"
-                      placeholder="dd/mm/yyyy"
-                      type="text"
-                    />
-                    <svg
-                      aria-hidden="true"
-                      class="bx--date-picker__icon"
-                      fill="currentColor"
-                      focusable="false"
-                      height="16"
-                      preserveAspectRatio="xMidYMid meet"
-                      role="img"
-                      viewBox="0 0 32 32"
-                      width="16"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M26,4h-4V2h-2v2h-8V2h-2v2H6C4.9,4,4,4.9,4,6v20c0,1.1,0.9,2,2,2h20c1.1,0,2-0.9,2-2V6C28,4.9,27.1,4,26,4z M26,26H6V12h20	V26z M26,10H6V6h4v2h2V6h8v2h2V6h4V10z"
+                    <span>
+                      <input
+                        class="cds--date-picker__input cds--date-picker__input--md flatpickr-input"
+                        disabled=""
+                        id="date-picker-input-id-finish"
+                        pattern="\\d{1,2}\\/\\d{1,2}\\/\\d{4}"
+                        placeholder="dd/mm/yyyy"
+                        type="text"
                       />
-                    </svg>
+                      <svg
+                        aria-hidden="true"
+                        class="cds--date-picker__icon"
+                        fill="currentColor"
+                        focusable="false"
+                        height="16"
+                        preserveAspectRatio="xMidYMid meet"
+                        role="img"
+                        viewBox="0 0 32 32"
+                        width="16"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M26,4h-4V2h-2v2h-8V2h-2v2H6C4.9,4,4,4.9,4,6v20c0,1.1,0.9,2,2,2h20c1.1,0,2-0.9,2-2V6C28,4.9,27.1,4,26,4z M26,26H6V12h20 V26z M26,10H6V6h4v2h2V6h8v2h2V6h4V10z"
+                        />
+                      </svg>
+                    </span>
                   </div>
                 </div>
               </div>
@@ -411,18 +490,17 @@ exports[`SavePopup should render with Update Note when noteId is defined 1`] = `
         </div>
       </div>
       <div
-        class="bx--modal-footer bx--btn-set"
+        aria-busy="false"
+        class="cds--modal-footer cds--btn-set"
       >
         <button
-          class="bx--btn bx--btn--secondary"
-          tabindex="0"
+          class="cds--btn cds--btn--secondary"
           type="button"
         >
           Cancel
         </button>
         <button
-          class="bx--btn bx--btn--primary"
-          tabindex="0"
+          class="cds--btn cds--btn--primary"
           type="button"
         >
           Update
@@ -430,7 +508,7 @@ exports[`SavePopup should render with Update Note when noteId is defined 1`] = `
       </div>
     </div>
     <span
-      class="bx--visually-hidden"
+      class="cds--visually-hidden"
       role="link"
       tabindex="0"
     >

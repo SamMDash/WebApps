@@ -1,5 +1,4 @@
-import { Close24 } from "@carbon/icons-react";
-import { ArrowLeft } from "@carbon/icons-react/next";
+import { Close, ArrowLeft } from "@carbon/icons-react";
 import { RadioButton, RadioButtonGroup, TextArea } from "carbon-components-react";
 import { isEmpty } from "lodash";
 import propTypes from "prop-types";
@@ -64,7 +63,7 @@ export function AddAllergy(props) {
       <div className={"overlay-next-ui"}>
         <div className={"heading"}>{allergiesHeading}</div>
         <span className="close" onClick={onClose}>
-          <Close24 />
+          <Close size={24} />
         </span>
         <div className={"add-allergy-container"}>
           {isEmpty(allergen) ? (

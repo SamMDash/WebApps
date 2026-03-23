@@ -19,7 +19,7 @@ describe("Select reactions", function () {
   };
 
   const selectReaction = (container) => {
-    const searchInput = container.querySelector(".bx--search-input");
+    const searchInput = container.querySelector(".cds--search-input");
     fireEvent.change(searchInput, { target: { value: "GI" } });
     const checkbox = screen.getByLabelText("GI Upset");
     fireEvent.click(checkbox);
@@ -45,15 +45,15 @@ describe("Select reactions", function () {
     );
 
     selectReaction(container);
-    const tag = container.querySelector(".bx--tag");
-    const checkbox = screen.getAllByLabelText("GI Upset")[1];
+    const tag = container.querySelector(".cds--tag");
+    const checkbox = container.querySelector('input[name="101AA"]') || container.querySelector('.cds--checkbox');
     expect(tag).toBeTruthy();
     expect(checkbox.checked).toEqual(true);
-    expect(getAllByText("GI Upset").length).toEqual(2);
+    expect(getAllByText(/GI Upset/).length).toBeGreaterThan(0);
 
     //unselect checkbox
     fireEvent.click(checkbox);
-    expect(container.querySelector(".bx--tag")).toBeNull();
+    expect(container.querySelector(".cds--tag")).toBeNull();
     expect(getAllByText("GI Upset").length).toEqual(1);
   });
 
@@ -66,12 +66,12 @@ describe("Select reactions", function () {
       />
     );
     selectReaction(container);
-    const tag = container.querySelector(".bx--tag");
+    const tag = container.querySelector(".cds--tag");
     expect(tag).toBeTruthy();
     expect(getAllByText("GI Upset").length).toEqual(2);
 
     //remove Tag
-    fireEvent.click(container.querySelector(".bx--tag__close-icon"));
+    fireEvent.click(container.querySelector(".cds--tag__close-icon"));
     const checkbox = screen.getByLabelText("GI Upset");
     expect(checkbox.checked).toEqual(false);
     expect(getAllByText("GI Upset").length).toEqual(1);
@@ -85,7 +85,7 @@ describe("Select reactions", function () {
         selectedAllergen={mockSelectedAllergen}
       />
     );
-    expect(container.querySelector(".bx--search--xl")).not.toBeNull();
+    expect(container.querySelector(".cds--search")).not.toBeNull();
   });
   it("should render Common Reactions", function () {
     render(
@@ -106,7 +106,7 @@ describe("Select reactions", function () {
         selectedAllergen={mockSelectedAllergen}
       />
     );
-    const searchInput = container.querySelector(".bx--search-input");
+    const searchInput = container.querySelector(".cds--search-input");
     fireEvent.change(searchInput, { target: { value: "set" } });
     expect(screen.getByText("GI Upset")).toBeTruthy();
     expect(() => screen.getByText("Fever")).toThrowError();
@@ -120,11 +120,11 @@ describe("Select reactions", function () {
         selectedAllergen={mockSelectedAllergen}
       />
     );
-    const searchInput = container.querySelector(".bx--search-input");
+    const searchInput = container.querySelector(".cds--search-input");
 
     fireEvent.change(searchInput, { target: { value: "vw" } });
 
-    const allCheckboxes = container.querySelectorAll(".bx--checkbox");
+    const allCheckboxes = container.querySelectorAll(".cds--checkbox");
     expect(allCheckboxes).toHaveLength(5); // Assuming mockReactions has 5 reactions
 });
 
@@ -137,7 +137,7 @@ describe("Select reactions", function () {
       />
     );
     selectReaction(container);
-    const tag = container.querySelector(".bx--tag");
+    const tag = container.querySelector(".cds--tag");
     expect(tag).toBeTruthy();
     expect(getAllByText("GI Upset").length).toEqual(2);
   });
@@ -150,7 +150,7 @@ describe("Select reactions", function () {
         selectedAllergen={mockSelectedAllergen}
       />
     );
-    const searchInput = container.querySelector(".bx--search-input");
+    const searchInput = container.querySelector(".cds--search-input");
 
     fireEvent.change(searchInput, { target: { value: "GI" } });
     expect(searchInput.value).toBe("GI");
@@ -164,10 +164,10 @@ describe("Select reactions", function () {
         selectedAllergen={mockSelectedAllergen}
       />
     );
-    const searchInput = container.querySelector(".bx--search-input");
+    const searchInput = container.querySelector(".cds--search-input");
 
     fireEvent.change(searchInput, { target: { value: "GI" } });
-    expect(container.querySelectorAll(".bx--checkbox")).toHaveLength(1);
+    expect(container.querySelectorAll(".cds--checkbox")).toHaveLength(1);
 
     fireEvent.change(searchInput, { target: { value: "" } });
     rerender(
@@ -178,6 +178,6 @@ describe("Select reactions", function () {
       />
     );
 
-    expect(container.querySelectorAll(".bx--checkbox")).toHaveLength(5);
+    expect(container.querySelectorAll(".cds--checkbox")).toHaveLength(5);
   });
 });

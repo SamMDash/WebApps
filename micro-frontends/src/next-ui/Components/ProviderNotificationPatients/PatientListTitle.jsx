@@ -1,5 +1,5 @@
 import React from "react";
-import { WarningAlt16 } from "@carbon/icons-react";
+import { WarningAlt } from "@carbon/icons-react";
 import { Link } from "carbon-components-react";
 import "./PatientListTitle.scss";
 import { getPatientIPDDashboardUrl } from "../../utils/providerNotifications/ProviderNotificationUtils";
@@ -9,7 +9,7 @@ import PropTypes from "prop-types";
 const PatientListTitle = ({ noOfDrugs, identifier, name, age, gender, patientUuid, visitUuid }) => (
   <div className="patient-list-tile-content">
     <div className="warning">
-      <WarningAlt16 />
+      <WarningAlt size={16} />
       <span className="drug-count">{noOfDrugs}</span>
     </div>
     <div className="patient-info">

@@ -25,7 +25,6 @@ exports[`TileItem should match the screenshot 1`] = `
         >
           test comment text
            
-          
         </div>
       </div>
       <span
@@ -46,7 +45,10 @@ exports[`TileItem should match the screenshot 1`] = `
             d="M25.7,9.3l-7-7C18.5,2.1,18.3,2,18,2H8C6.9,2,6,2.9,6,4v24c0,1.1,0.9,2,2,2h16c1.1,0,2-0.9,2-2V10C26,9.7,25.9,9.5,25.7,9.3 z M18,4.4l5.6,5.6H18V4.4z M24,28H8V4h8v6c0,1.1,0.9,2,2,2h6V28z"
           />
           <path
-            d="M10 22H22V24H10zM10 16H22V18H10z"
+            d="M10 22H22V24H10z"
+          />
+          <path
+            d="M10 16H22V18H10z"
           />
         </svg>
         notes example - by test provider
@@ -72,7 +74,6 @@ exports[`TileItem should match the screenshot 1`] = `
         >
           test comment text
            
-          
         </div>
       </div>
       <span
@@ -93,7 +94,10 @@ exports[`TileItem should match the screenshot 1`] = `
             d="M25.7,9.3l-7-7C18.5,2.1,18.3,2,18,2H8C6.9,2,6,2.9,6,4v24c0,1.1,0.9,2,2,2h16c1.1,0,2-0.9,2-2V10C26,9.7,25.9,9.5,25.7,9.3 z M18,4.4l5.6,5.6H18V4.4z M24,28H8V4h8v6c0,1.1,0.9,2,2,2h6V28z"
           />
           <path
-            d="M10 22H22V24H10zM10 16H22V18H10z"
+            d="M10 22H22V24H10z"
+          />
+          <path
+            d="M10 16H22V18H10z"
           />
         </svg>
         notes example - by 
@@ -133,7 +137,6 @@ exports[`TileItem should match the screenshot 1`] = `
             >
               100
                
-              
             </div>
           </div>
         </div>
@@ -187,7 +190,6 @@ exports[`TileItem should match the screenshot 1`] = `
             >
               12
                
-              
             </div>
           </div>
           <span
@@ -208,7 +210,10 @@ exports[`TileItem should match the screenshot 1`] = `
                 d="M25.7,9.3l-7-7C18.5,2.1,18.3,2,18,2H8C6.9,2,6,2.9,6,4v24c0,1.1,0.9,2,2,2h16c1.1,0,2-0.9,2-2V10C26,9.7,25.9,9.5,25.7,9.3 z M18,4.4l5.6,5.6H18V4.4z M24,28H8V4h8v6c0,1.1,0.9,2,2,2h6V28z"
               />
               <path
-                d="M10 22H22V24H10zM10 16H22V18H10z"
+                d="M10 22H22V24H10z"
+              />
+              <path
+                d="M10 16H22V18H10z"
               />
             </svg>
             nested children notes example - by 

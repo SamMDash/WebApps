@@ -63,8 +63,10 @@ describe("SavePopup", () => {
         expect(() => screen.getByText("Note cannot be empty")).toThrow();
         const saveButton = getByText("Save");
         expect(saveButton).toBeTruthy();
-        saveButton.click();
-        expect(screen.getByText("Note cannot be empty")).toBeTruthy();
+        fireEvent.click(saveButton);
+        await waitFor(() => {
+            expect(screen.getByText("Note cannot be empty")).toBeTruthy();
+        });
     });
     it("should call save when all data is valid", async () => {
         const {container, getByText} = render(
@@ -81,7 +83,7 @@ describe("SavePopup", () => {
         await waitFor(() => {
             screen.getByText("Add Note").click();
         });
-        const textBox = container.querySelector('.bx--text-area');
+        const textBox = container.querySelector('.cds--text-area');
         fireEvent.change(textBox, {target: {value: 'notes for the day'}});
         const saveButton = getByText("Save");
         saveButton.click();
@@ -105,7 +107,7 @@ describe("SavePopup", () => {
         await waitFor(() => {
             screen.getByText("Add Note").click();
         });
-        const textBox = container.querySelector('.bx--text-area');
+        const textBox = container.querySelector('.cds--text-area');
         fireEvent.change(textBox, {target: {value: 'notes for the day'}});
         const saveButton = getByText("Save");
         saveButton.click();
@@ -129,7 +131,7 @@ describe("SavePopup", () => {
         await waitFor(() => {
             screen.getByText("Update Note").click();
         });
-        const textBox = container.querySelector('.bx--text-area');
+        const textBox = container.querySelector('.cds--text-area');
         fireEvent.change(textBox, {target: {value: 'notes for the day'}});
         const saveButton = getByText("Update");
         saveButton.click();

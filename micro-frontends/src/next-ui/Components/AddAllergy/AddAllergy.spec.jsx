@@ -53,13 +53,13 @@ describe("AddAllergy", () => {
     fireEvent.click(selectAllergen);
   };
   const selectReaction = (container) => {
-    const severity = container.querySelectorAll(".bx--checkbox")[0];
+    const severity = container.querySelectorAll(".cds--checkbox")[0];
     fireEvent.click(severity);
     expect(severity.checked).toEqual(true);
   };
 
   const selectSeverity = (container) => {
-    const selectSeverity = container.querySelectorAll(".bx--radio-button")[0];
+    const selectSeverity = container.querySelectorAll(".cds--radio-button")[0];
     fireEvent.click(selectSeverity);
     expect(selectSeverity.checked).toEqual(true);
   };
@@ -243,7 +243,7 @@ describe("AddAllergy", () => {
     searchAllergen();
     selectAllergen();
 
-    const textArea = container.querySelector(".bx--text-area");
+    const textArea = container.querySelector(".cds--text-area");
     expect(textArea.placeholder).toBe(
       "Additional comments such as onset date etc."
     );

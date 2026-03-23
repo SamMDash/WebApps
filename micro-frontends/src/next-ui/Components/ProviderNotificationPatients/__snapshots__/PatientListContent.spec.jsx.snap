@@ -18,13 +18,14 @@ exports[`PatientListContent Component renders the component without crashing 1`]
         class="notes"
       >
         <div
-          class="bx--form-item"
+          class="cds--form-item patient-list-text-area"
         >
           <div
-            class="bx--text-area__label-wrapper"
+            class="cds--text-area__label-wrapper"
           >
             <label
-              class="bx--label"
+              class="cds--label"
+              dir="auto"
             >
               <div
                 class="titleText"
@@ -41,21 +42,27 @@ exports[`PatientListContent Component renders the component without crashing 1`]
             </label>
           </div>
           <div
-            class="bx--text-area__wrapper"
+            class="cds--text-area__wrapper"
           >
             <textarea
-              class="bx--text-area patient-list-text-area"
-              cols="50"
+              aria-invalid="false"
+              class="cds--text-area"
               placeholder="Enter Notes"
               required=""
               rows="1"
+              style="width: 100%;"
+            />
+            <span
+              aria-atomic="true"
+              aria-live="assertive"
+              class="cds--text-area__counter-alert"
+              role="alert"
             />
           </div>
         </div>
         <button
-          class="patient-list-button bx--btn bx--btn--primary bx--btn--disabled"
+          class="patient-list-button cds--btn cds--btn--primary cds--btn--disabled"
           disabled=""
-          tabindex="0"
           type="button"
         >
           Acknowledge

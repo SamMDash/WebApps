@@ -107,9 +107,9 @@ export const SelectReactions = (props) => {
               key={reactionId}
               labelText={allReactions[reactionId].name}
               checked={allReactions[reactionId].isSelected}
-              onChange={(e) => {
-                allReactions[reactionId].isSelected = e;
-                if (e) {
+              onChange={(evt, { checked }) => {
+                allReactions[reactionId].isSelected = checked;
+                if (checked) {
                   setSelectedReactions((oldReactions) => [
                     ...oldReactions,
                     reactionId,

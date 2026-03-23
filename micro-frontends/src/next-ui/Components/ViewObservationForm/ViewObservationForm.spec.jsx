@@ -76,8 +76,8 @@ describe("ViewObservationForm", () => {
 
   it("should show loader", () => {
     const updatedProps = { ...initialProps, isViewFormLoading: true };
-    render(<ViewObservationForm {...updatedProps} />);
-    expect(screen.queryAllByText("Active loading indicator")).toHaveLength(2);
+    const { container } = render(<ViewObservationForm {...updatedProps} />);
+    expect(container.querySelectorAll(".cds--loading")).toHaveLength(1);
   });
 
   it("should render and group complex type like video/image/pdf which is in first level of hierarchy", () => {

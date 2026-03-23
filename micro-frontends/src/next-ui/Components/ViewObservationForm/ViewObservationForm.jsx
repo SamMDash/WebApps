@@ -1,7 +1,7 @@
 import React from "react";
 import { Modal, Tile, Loading } from "carbon-components-react";
 import propTypes from "prop-types";
-import { Document } from "@carbon/icons-react/next";
+import { Document } from "@carbon/icons-react";
 import TileItem from "./TileItem/TileItem";
 import {
   subLabels,

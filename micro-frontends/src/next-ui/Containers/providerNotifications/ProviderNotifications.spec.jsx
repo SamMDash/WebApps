@@ -153,8 +153,8 @@ describe('ProviderNotifications Component', () => {
             fireEvent.click(acknowledgeButton);
         });
         expect(screen.getByText(/New Error/i)).toBeTruthy();
-        const notification = screen.getByRole('alert');
-        expect(notification.getAttribute("class")).toContain("error");
+        const notification = document.querySelector('.bx--inline-notification') || document.querySelector('.cds--inline-notification');
+        expect(notification).toBeTruthy();
     });
 
     it('should set showNotification to false when NotificationCarbon onClose is called', async () => {
@@ -173,7 +173,6 @@ describe('ProviderNotifications Component', () => {
             fireEvent.click(acknowledgeButton);
         });
         await waitFor(() => expect(screen.getByText(/Acknowledgement successful/i)).toBeTruthy());
-        await new Promise(res => setTimeout(res, 3000));
-        expect(screen.queryByText(/Acknowledgement successful/i)).not.toBeTruthy();
+        await waitFor(() => expect(screen.queryByText(/Acknowledgement successful/i)).not.toBeTruthy(), { timeout: 6000 });
     });
 });

@@ -3,20 +3,20 @@
 exports[`PatientsList Component renders the component without crashing 1`] = `
 <div>
   <ul
-    class="bx--accordion patient-list-dropdown bx--accordion--end bx--accordion--md"
+    class="cds--accordion patient-list-dropdown cds--accordion--end"
   >
     <li
-      class="bx--accordion__item"
+      class="cds--accordion__item"
     >
       <button
-        aria-controls="accordion-item-2"
+        aria-controls="accordion-item-:r0:"
         aria-expanded="false"
-        class="bx--accordion__heading"
+        class="cds--accordion__heading"
         type="button"
       >
         <svg
           aria-hidden="true"
-          class="bx--accordion__arrow"
+          class="cds--accordion__arrow"
           fill="currentColor"
           focusable="false"
           height="16"
@@ -26,11 +26,11 @@ exports[`PatientsList Component renders the component without crashing 1`] = `
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
-            d="M11 8L6 13 5.3 12.3 9.6 8 5.3 3.7 6 3z"
+            d="M11 8 6 13 5.3 12.3 9.6 8 5.3 3.7 6 3z"
           />
         </svg>
         <div
-          class="bx--accordion__title"
+          class="cds--accordion__title"
           dir="auto"
         >
           <div
@@ -50,10 +50,13 @@ exports[`PatientsList Component renders the component without crashing 1`] = `
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  d="M14.5,14h-13c-0.2,0-0.3-0.1-0.4-0.2c-0.1-0.2-0.1-0.3,0-0.5l6.5-12C7.7,1,8,0.9,8.2,1.1c0.1,0,0.2,0.1,0.2,0.2l6.5,12	c0.1,0.2,0.1,0.3,0,0.5C14.9,13.9,14.7,14,14.5,14z M2.3,13h11.3L8,2.5L2.3,13z"
+                  d="M14.5,14h-13c-0.2,0-0.3-0.1-0.4-0.2c-0.1-0.2-0.1-0.3,0-0.5l6.5-12C7.7,1,8,0.9,8.2,1.1c0.1,0,0.2,0.1,0.2,0.2l6.5,12 c0.1,0.2,0.1,0.3,0,0.5C14.9,13.9,14.7,14,14.5,14z M2.3,13h11.3L8,2.5L2.3,13z"
                 />
                 <path
-                  d="M7.5 6H8.5V9.5H7.5zM8 10.8c-.4 0-.8.3-.8.8s.3.8.8.8c.4 0 .8-.3.8-.8S8.4 10.8 8 10.8z"
+                  d="M7.5 6H8.5V9.5H7.5z"
+                />
+                <path
+                  d="M8,10.8c-0.4,0-0.8,0.3-0.8,0.8s0.3,0.8,0.8,0.8c0.4,0,0.8-0.3,0.8-0.8S8.4,10.8,8,10.8z"
                 />
               </svg>
               <span
@@ -66,7 +69,7 @@ exports[`PatientsList Component renders the component without crashing 1`] = `
               class="patient-info"
             >
               <a
-                class="bx--link patient-id"
+                class="cds--link patient-id"
                 href="/bahmni/clinical/index.html#/default/patient/patient123/dashboard/visit/ipd/visit123?source=clinical"
               >
                 (PID123)
@@ -79,67 +82,78 @@ exports[`PatientsList Component renders the component without crashing 1`] = `
         </div>
       </button>
       <div
-        class="bx--accordion__content"
-        id="accordion-item-2"
+        class="cds--accordion__wrapper"
       >
         <div
-          class="patient-list-content"
+          class="cds--accordion__content"
+          id="accordion-item-:r0:"
         >
-          <span>
-            2/0/2
-          </span>
           <div
-            class="content-info"
+            class="patient-list-content"
           >
             <span>
-              Drug A
+              2/0/2
             </span>
             <div
-              class="notes"
+              class="content-info"
             >
+              <span>
+                Drug A
+              </span>
               <div
-                class="bx--form-item"
+                class="notes"
               >
                 <div
-                  class="bx--text-area__label-wrapper"
+                  class="cds--form-item patient-list-text-area"
                 >
-                  <label
-                    class="bx--label"
+                  <div
+                    class="cds--text-area__label-wrapper"
                   >
-                    <div
-                      class="titleText"
+                    <label
+                      class="cds--label"
+                      dir="auto"
                     >
-                      <span>
-                        Note 
-                      </span>
-                      <span
-                        class="required"
+                      <div
+                        class="titleText"
                       >
-                        *
-                      </span>
-                    </div>
-                  </label>
+                        <span>
+                          Note 
+                        </span>
+                        <span
+                          class="required"
+                        >
+                          *
+                        </span>
+                      </div>
+                    </label>
+                  </div>
+                  <div
+                    class="cds--text-area__wrapper"
+                  >
+                    <textarea
+                      aria-invalid="false"
+                      class="cds--text-area"
+                      placeholder="Enter Notes"
+                      required=""
+                      rows="1"
+                      style="width: 100%;"
+                    />
+                    <span
+                      aria-atomic="true"
+                      aria-live="assertive"
+                      class="cds--text-area__counter-alert"
+                      role="alert"
+                    />
+                  </div>
                 </div>
-                <div
-                  class="bx--text-area__wrapper"
+                <button
+                  class="patient-list-button cds--btn cds--btn--primary cds--btn--disabled"
+                  disabled=""
+                  type="button"
                 >
-                  <textarea
-                    class="bx--text-area patient-list-text-area"
-                    cols="50"
-                    placeholder="Enter Notes"
-                    required=""
-                    rows="1"
-                  />
-                </div>
+                  Acknowledge
+                </button>
               </div>
-              <button
-                class="patient-list-button bx--btn bx--btn--primary bx--btn--disabled"
-                disabled=""
-                tabindex="0"
-                type="button"
-              >
-                Acknowledge
-              </button>
             </div>
           </div>
         </div>

@@ -3,7 +3,7 @@ import "./ViewAllergiesAndReactions.scss";
 import "../../../styles/common.scss";
 import {FormattedMessage} from "react-intl";
 import { Accordion, AccordionItem } from "carbon-components-react";
-import { Document } from "@carbon/icons-react/next";
+import { Document } from "@carbon/icons-react";
 import PropTypes from "prop-types";
 export const ViewAllergiesAndReactions = (props) => {
     const { allergies, showTextAsAbnormal } = props;

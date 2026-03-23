@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import propTypes from "prop-types";
 import { Link } from "carbon-components-react";
-import { DocumentPdf, Download, PlayFilledAlt } from "@carbon/icons-react/next";
+import { DocumentPdf, Download, PlayFilledAlt } from "@carbon/icons-react";
 import { formatDate } from "../../../../utils/utils";
 import { FileViewerModal } from "../FileViewerModal/FileViewerModal";
 import { getThumbnail } from "../../../../utils/FormDisplayControl/FormView";
