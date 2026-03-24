@@ -2,9 +2,9 @@
 
 angular.module('bahmni.clinical')
     .controller('PatientDashboardController', ['$scope', 'clinicalAppConfigService', 'clinicalDashboardConfig', 'printer',
-        '$state', 'spinner', 'visitSummary', 'appService', '$stateParams', 'diseaseTemplateService', 'patientContext', '$location', '$filter',
+        '$state', 'spinner', 'visitSummary', 'appService', '$stateParams', 'diseaseTemplateService', 'patientContext', '$location', '$filter', 'ngDialog',
         function ($scope, clinicalAppConfigService, clinicalDashboardConfig, printer,
-            $state, spinner, visitSummary, appService, $stateParams, diseaseTemplateService, patientContext, $location, $filter) {
+            $state, spinner, visitSummary, appService, $stateParams, diseaseTemplateService, patientContext, $location, $filter, ngDialog) {
             // AI Assistant Button Handler
             $scope.openAIAssistant = function () {
                 console.log('[AI Assistant] Button clicked');
@@ -15,20 +15,19 @@ angular.module('bahmni.clinical')
                 } else if (window.currentUser && window.currentUser.uuid) {
                     doctorUuid = window.currentUser.uuid;
                 }
-                var url = '/ai-assistant?patientUuid=' + encodeURIComponent(patientUuid);
+                // ai-integration-frontend runs on port 8082
+                var aiUrl = window.location.protocol + '//' + window.location.hostname + ':8082';
+                var url = aiUrl + '/?patientUuid=' + encodeURIComponent(patientUuid);
                 if (doctorUuid) {
                     url += '&doctorUuid=' + encodeURIComponent(doctorUuid);
                 }
-                console.log('[AI Assistant] Opening iframe/modal with URL:', url);
-                if (window.ngDialog) {
-                    window.ngDialog.open({
-                        template: '<iframe src="' + url + '" width="100%" height="600px" frameborder="0"></iframe>',
-                        plain: true,
-                        className: 'ngdialog-theme-default ai-assistant-modal'
-                    });
-                } else {
-                    window.open(url, '_blank');
-                }
+                console.log('[AI Assistant] Opening modal with URL:', url);
+                ngDialog.open({
+                    template: '<div style="padding:0"><iframe src="' + url + '" style="width:100%;height:75vh;border:none;display:block"></iframe></div>',
+                    plain: true,
+                    className: 'ngdialog-theme-default ai-assistant-modal',
+                    width: '80%'
+                });
             };
             $scope.patient = patientContext.patient;
             $scope.activeVisit = $scope.visitHistory.activeVisit;
