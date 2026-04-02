@@ -24,7 +24,7 @@
 
 These steps need to performed ONLY the FIRST TIME you set up this code.
 
-1. Install node/npm (node version: 10.11.0). Preferably use nvm, so that you have control over which project uses which version of node. See:
+1. Install node/npm (node version: 18.20.4). Preferably use nvm, so that you have control over which project uses which version of node. See:
    - [how to install Node using nvm](https://github.com/nvm-sh/nvm).
    - [how to install NodeJS on mac](https://www.newline.co/@Adele/how-to-install-nodejs-and-npm-on-macos--22782681).
 2. Install Yarn: `npm install -g yarn`

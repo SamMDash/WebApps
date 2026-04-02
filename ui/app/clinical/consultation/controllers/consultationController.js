@@ -603,5 +603,30 @@ angular.module('bahmni.clinical').controller('ConsultationController',
                 $scope.gotoPatientDashboard();
             });
 
+            // AI Assistant Button Handler
+            $scope.openAIAssistant = function () {
+                console.log('[AI Assistant] Button clicked from consultation');
+                var patientUuid = $scope.patient.uuid;
+                var doctorUuid = '';
+                if (window.sessionContext && window.sessionContext.currentProvider && window.sessionContext.currentProvider.uuid) {
+                    doctorUuid = window.sessionContext.currentProvider.uuid;
+                } else if (window.currentUser && window.currentUser.uuid) {
+                    doctorUuid = window.currentUser.uuid;
+                }
+                // ai-integration-frontend runs on port 8082
+                var aiUrl = window.location.protocol + '//' + window.location.hostname + ':8082';
+                var url = aiUrl + '/?patientUuid=' + encodeURIComponent(patientUuid);
+                if (doctorUuid) {
+                    url += '&doctorUuid=' + encodeURIComponent(doctorUuid);
+                }
+                console.log('[AI Assistant] Opening modal with URL:', url);
+                ngDialog.open({
+                    template: '<div style="padding:0"><iframe src="' + url + '" style="width:100%;height:75vh;border:none;display:block"></iframe></div>',
+                    plain: true,
+                    className: 'ngdialog-theme-default ai-assistant-modal',
+                    width: '80%'
+                });
+            };
+
             initialize();
         }]);

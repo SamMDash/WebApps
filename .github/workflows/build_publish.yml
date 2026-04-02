@@ -16,7 +16,7 @@ jobs:
       HELM_CHART_PATH: package/helm/
     steps:
       # Step 1: Checkout code
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       # Step 2: Set ARTIFACT_VERSION
       - name: Ensure .appversion exists
@@ -31,10 +31,10 @@ jobs:
           rm setArtifactVersion.sh
 
       # Step 3: Node.js and Ruby setup for frontend build
-      - name: Use Node.js 14.x
-        uses: actions/setup-node@v1
+      - name: Use Node.js 18.x
+        uses: actions/setup-node@v4
         with:
-          node-version: 14.x
+          node-version: 18.x
       - name: Use Ruby 3.1
         uses: ruby/setup-ruby@v1
         with:

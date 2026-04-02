@@ -37,8 +37,9 @@
                     <span class="text" ng-bind-html="'CLINICAL_SAVE_TRANSLATION_KEY'| translate"></span>
                 </button>
                 <!-- AI Assistant Button -->
-                <button class="dialog-button-group ai-assistant" ng-click="openAIAssistant()" title="AI Assistant">
-                    <i class="fa fa-robot"></i>
+                <button class="dialog-button-group ai-assistant" onclick="return window.openBahmniAISidebar && window.openBahmniAISidebar();" title="AI Assistant" style="margin-left:8px;">
+                    <i class="fa fa-magic"></i>
+                    <span class="text" style="margin-left:4px;">AI</span>
                 </button>
             </div>
         </div>
@@ -100,10 +101,6 @@
                         accesskey="{{'CLINICAL_PRINT_ACCESS_KEY'| translate}}" ng-bind-html="'CLINICAL_PRINT_TRANSLATION_KEY'|translate">
                     <i class="fa fa-print"></i>
                 </button>
-                <!-- AI Assistant Button for Patient Dashboard -->
-                <button class="dialog-button-group ai-assistant" ng-click="openAIAssistant()" title="AI Assistant">
-                    <i class="fa fa-robot"></i>
-                </button>
                 <div class="dashboard-date-picker" ng-controller="PatientListHeaderController">
                     <div class="retro-date-widget-wrapper fr">
                         <div class="retro-date-widget-header fr">
@@ -142,3 +139,31 @@
         </div>
     </div>
 </div>
+
+<script>
+    window.openBahmniAISidebar = function () {
+        var existing = document.getElementById('ai-assistant-sidebar');
+        if (existing) {
+            return false;
+        }
+
+        // Extract patient UUID from Bahmni URL hash
+        var hash = window.location.hash || '';
+        var match = hash.match(/\/patient\/([^\/?]+)/);
+        var patientUuid = match && match[1] ? decodeURIComponent(match[1]) : '';
+
+        var sidebar = document.createElement('div');
+        sidebar.id = 'ai-assistant-sidebar';
+        sidebar.style.cssText = 'position:fixed;top:0;right:0;width:460px;max-width:95vw;height:100vh;background:#fff;z-index:2147483000;box-shadow:-6px 0 24px rgba(0,0,0,.28);';
+
+        // Pass patient UUID as query parameter to AI frontend
+        var src = 'http://' + window.location.hostname + ':8082/' + (patientUuid ? '?patientUuid=' + encodeURIComponent(patientUuid) : '');
+        sidebar.innerHTML = '<div style="height:48px;padding:8px 12px;background:#0c6193;color:#fff;display:flex;align-items:center;justify-content:space-between;font-family:OpenSans,Arial,sans-serif"><strong>AI Assistant</strong><button id="ai-assistant-close" style="border:0;background:transparent;color:#fff;font-size:26px;line-height:1;cursor:pointer">&times;</button></div><iframe src="' + src + '" style="width:100%;height:calc(100% - 48px);border:0;display:block"></iframe>';
+
+        document.body.appendChild(sidebar);
+        document.getElementById('ai-assistant-close').onclick = function () {
+            sidebar.remove();
+        };
+        return false;
+    };
+</script>

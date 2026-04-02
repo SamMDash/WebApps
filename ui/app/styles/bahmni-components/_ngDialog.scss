@@ -339,3 +339,24 @@
 .auto-scrollable-dialog .ngdialog-content {
     height: auto !important;
 }
+
+/* AI Assistant Modal Styling */
+.ai-assistant-modal {
+    &.ngdialog-theme-default {
+        .ngdialog-overlay {
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .ngdialog-content {
+            border-radius: 8px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            max-height: 90vh;
+            overflow: hidden;
+            padding: 0;
+
+            iframe {
+                border-radius: 8px;
+            }
+        }
+    }
+}
