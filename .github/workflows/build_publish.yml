@@ -45,8 +45,8 @@ jobs:
       - run: npm install -g grunt-cli
       - run: gem install compass
       - run: npm install --global yarn
-      - name: Install ripgrep
-        run: sudo apt-get update && sudo apt-get install -y ripgrep
+      - name: Install CI system packages
+        run: sudo apt-get update && sudo apt-get install -y firefox ripgrep
 
       # Step 5: Micro-frontends build & test
       - name: micro-frontends | install dependencies

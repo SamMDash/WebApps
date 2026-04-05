@@ -21,8 +21,8 @@ jobs:
       - run: npm install -g grunt-cli 
       - run: gem install compass  
       - run: npm install --global yarn
-      - name: Install ripgrep
-        run: sudo apt-get update && sudo apt-get install -y ripgrep
+      - name: Install CI system packages
+        run: sudo apt-get update && sudo apt-get install -y firefox ripgrep
       - name: micro-frontends | install dependencies
         working-directory: micro-frontends
         run: yarn install --frozen-lock-file
