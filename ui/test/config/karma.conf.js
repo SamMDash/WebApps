@@ -1,6 +1,8 @@
 module.exports = function (config) {
     config.set({
         basePath: '../..',
+        hostname: '127.0.0.1',
+        port: 9876,
         frameworks: ['jasmine'],
         browsers: ['Firefox'],
         browserNoActivityTimeout: 100000,
@@ -116,7 +118,7 @@ module.exports = function (config) {
             moduleName: 'ngHtml2JsPreprocessor'
         },
         proxies:{
-            '/images/blank-user.gif' :'/base/app/images/blank-user.gif'
+            '/images/blank-user.gif' :'http://127.0.0.1:9876/base/app/images/blank-user.gif'
         }
     });
 };
