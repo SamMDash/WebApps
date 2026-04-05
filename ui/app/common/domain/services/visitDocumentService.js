@@ -2,10 +2,18 @@
 
 angular.module('bahmni.common.domain')
     .service('visitDocumentService', ['$http', 'auditLogService', 'configurations', '$q', 'messagingService', '$translate', function ($http, auditLogService, configurations, $q, messagingService, $translate) {
+        var hasImagePath = function (imagePath) {
+            if (!_.isString(imagePath)) {
+                return false;
+            }
+            var normalizedPath = imagePath.trim();
+            return !!normalizedPath && normalizedPath !== 'null' && normalizedPath !== 'undefined';
+        };
+
         var removeVoidedDocuments = function (documents) {
             documents.forEach(function (document) {
-                if (document.voided && document.image) {
-                    var url = Bahmni.Common.Constants.RESTWS_V1 + "/bahmnicore/visitDocument?filename=" + document.image;
+                if (document.voided && hasImagePath(document.image)) {
+                    var url = Bahmni.Common.Constants.RESTWS_V1 + "/bahmnicore/visitDocument?filename=" + document.image.trim();
                     $http.delete(url, {withCredentials: true});
                 }
             });

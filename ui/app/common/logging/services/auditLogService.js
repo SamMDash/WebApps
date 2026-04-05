@@ -4,18 +4,39 @@ angular.module('bahmni.common.logging')
         var DateUtil = Bahmni.Common.Util.DateUtil;
 
         var convertToLocalDate = function (date) {
-            var localDate = DateUtil.parseLongDateToServerFormat(date);
-            return DateUtil.getDateTimeInSpecifiedFormat(localDate, 'MMMM Do, YYYY [at] h:mm:ss A');
+            var timestamp = _.isNumber(date) ? date : Number(date);
+            var localDate = !isNaN(timestamp) ? DateUtil.parseLongDateToServerFormat(timestamp) : date;
+            var formattedDate = DateUtil.getDateTimeInSpecifiedFormat(localDate, 'MMMM Do, YYYY [at] h:mm:ss A');
+            return DateUtil.isInvalid(formattedDate) ? DateUtil.getDateTimeInSpecifiedFormat(timestamp, 'MMMM Do, YYYY [at] h:mm:ss A') : formattedDate;
+        };
+
+        var splitMessageAndParams = function (message) {
+            var rawMessage = _.isString(message) ? message : '';
+            var splitMessage = rawMessage.split('~');
+            var params;
+
+            if (splitMessage[1]) {
+                try {
+                    params = JSON.parse(splitMessage[1]);
+                } catch (e) {
+                    params = undefined;
+                }
+            }
+
+            return {
+                message: splitMessage[0],
+                params: params
+            };
         };
 
         this.getLogs = function (params) {
             params = params || {};
             return $http.get(Bahmni.Common.Constants.auditLogUrl, {params: params}).then(function (response) {
                 return response.data.map(function (log) {
+                    var messageAndParams = splitMessageAndParams(log.message);
                     log.dateCreated = convertToLocalDate(log.dateCreated);
-                    var entity = log.message ? log.message.split("~")[1] : undefined;
-                    log.params = entity ? JSON.parse(entity) : entity;
-                    log.message = log.message.split("~")[0];
+                    log.params = messageAndParams.params;
+                    log.message = messageAndParams.message;
                     log.displayMessage = $translate.instant(log.message, log);
                     return log;
                 });
