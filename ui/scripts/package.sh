@@ -16,21 +16,20 @@ yarn uglify-and-rename
 
 cd $ROOT_DIR
 
-if [ "$CI" = "true" ]; then
-    export MOZ_HEADLESS=1
-    echo "CI mode detected, running Firefox in headless mode"
-else
-    if pgrep -x Xvfb >/dev/null; then
-        XVFB_PID=$(pgrep -x Xvfb)
-        echo "Killing Xvfb process $XVFB_PID"
-        /usr/bin/sudo kill $XVFB_PID
-        /usr/bin/sudo rm -rf /tmp/.X99-lock
-    fi
+if pgrep -x Xvfb >/dev/null; then
+    XVFB_PID=$(pgrep -x Xvfb)
+    echo "Killing Xvfb process $XVFB_PID"
+    /usr/bin/sudo kill $XVFB_PID
+    /usr/bin/sudo rm -rf /tmp/.X99-lock
+fi
 
-    export DISPLAY=:99
-    Xvfb :99 &
-    XVFB_PID=$!
-    echo "Starting Xvfb process $XVFB_PID"
+export DISPLAY=:99
+Xvfb :99 -screen 0 1920x1080x24 -nolisten tcp &
+XVFB_PID=$!
+echo "Starting Xvfb process $XVFB_PID"
+
+if [ "$CI" = "true" ]; then
+    export KARMA_BROWSER=Firefox
 fi
 
 yarn web

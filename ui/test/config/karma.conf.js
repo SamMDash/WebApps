@@ -1,22 +1,17 @@
 module.exports = function (config) {
     var isCI = process.env.CI === 'true';
+    var selectedBrowser = process.env.KARMA_BROWSER || (isCI ? 'Firefox' : 'Firefox');
 
     config.set({
         basePath: '../..',
         hostname: '127.0.0.1',
         port: 9876,
         frameworks: ['jasmine'],
-        browsers: [isCI ? 'FirefoxHeadlessCI' : 'Firefox'],
-        customLaunchers: {
-            FirefoxHeadlessCI: {
-                base: 'FirefoxHeadless',
-                flags: ['-headless']
-            }
-        },
+        browsers: [selectedBrowser],
         browserNoActivityTimeout: 100000,
         browserDisconnectTolerance: 2,
         browserDisconnectTimeout: 10000,
-        captureTimeout: 120000,
+        captureTimeout: isCI ? 240000 : 120000,
         autoWatch: false,
         singleRun: true,
         files: [
