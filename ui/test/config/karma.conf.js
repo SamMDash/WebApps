@@ -1,10 +1,18 @@
 module.exports = function (config) {
+    var isCI = process.env.CI === 'true';
+
     config.set({
         basePath: '../..',
         hostname: '127.0.0.1',
         port: 9876,
         frameworks: ['jasmine'],
-        browsers: ['Firefox'],
+        browsers: [isCI ? 'FirefoxHeadlessCI' : 'Firefox'],
+        customLaunchers: {
+            FirefoxHeadlessCI: {
+                base: 'FirefoxHeadless',
+                flags: ['-headless']
+            }
+        },
         browserNoActivityTimeout: 100000,
         browserDisconnectTolerance: 2,
         browserDisconnectTimeout: 10000,

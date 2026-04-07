@@ -16,20 +16,28 @@ yarn uglify-and-rename
 
 cd $ROOT_DIR
 
-if [ $(pgrep Xvfb) ]; then
-    XVFB_PID=$(pgrep Xvfb)
-    echo "Killing Xvfb process $XVFB_PID"
-    /usr/bin/sudo kill $XVFB_PID
-    /usr/bin/sudo rm -rf /tmp/.X99-lock
+if [ "$CI" = "true" ]; then
+    export MOZ_HEADLESS=1
+    echo "CI mode detected, running Firefox in headless mode"
+else
+    if pgrep -x Xvfb >/dev/null; then
+        XVFB_PID=$(pgrep -x Xvfb)
+        echo "Killing Xvfb process $XVFB_PID"
+        /usr/bin/sudo kill $XVFB_PID
+        /usr/bin/sudo rm -rf /tmp/.X99-lock
+    fi
+
+    export DISPLAY=:99
+    Xvfb :99 &
+    XVFB_PID=$!
+    echo "Starting Xvfb process $XVFB_PID"
 fi
-export DISPLAY=:99
-Xvfb :99 &
-XVFB_PID=$!
-echo "Starting Xvfb process $XVFB_PID"
 
 yarn web
 cd dist && zip -r ../target/${ZIP_FILE_NAME}.zip *
 
 
-echo "Killing Xvfb process $XVFB_PID"
-/usr/bin/sudo kill $XVFB_PID
+if [ -n "$XVFB_PID" ]; then
+    echo "Killing Xvfb process $XVFB_PID"
+    /usr/bin/sudo kill $XVFB_PID
+fi
