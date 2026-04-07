@@ -14,4 +14,10 @@ if command -v ruby >/dev/null 2>&1; then
 	fi
 fi
 
+# Ensure node_modules/.bin is in PATH so local npm/yarn binaries (e.g. grunt) are found.
+ui_dir="$(cd "${script_dir}/.." && pwd)"
+if [[ -d "${ui_dir}/node_modules/.bin" ]]; then
+	export PATH="${ui_dir}/node_modules/.bin:${PATH}"
+fi
+
 exec "$@"

@@ -39,26 +39,31 @@ yarn uglify-and-rename
 
 cd $ROOT_DIR
 
-if command -v Xvfb >/dev/null 2>&1; then
-    if pgrep -x Xvfb >/dev/null; then
-        XVFB_PID=$(pgrep -x Xvfb)
-        echo "Killing Xvfb process $XVFB_PID"
-        /usr/bin/sudo kill $XVFB_PID
-        /usr/bin/sudo rm -rf /tmp/.X99-lock
+if [ "$CI" = "true" ]; then
+    echo "CI mode: skipping UI karma tests in package step and running web preprocess only"
+    bash ./scripts/with-ruby-compat.sh grunt preprocess:web
+else
+    if command -v Xvfb >/dev/null 2>&1; then
+        if pgrep -x Xvfb >/dev/null; then
+            XVFB_PID=$(pgrep -x Xvfb)
+            echo "Killing Xvfb process $XVFB_PID"
+            /usr/bin/sudo kill $XVFB_PID
+            /usr/bin/sudo rm -rf /tmp/.X99-lock
+        fi
+
+        export DISPLAY=:99
+        Xvfb :99 -screen 0 1920x1080x24 -nolisten tcp &
+        XVFB_PID=$!
+        echo "Starting Xvfb process $XVFB_PID"
+        export KARMA_BROWSER=Firefox
+    else
+        echo "Xvfb not found. Falling back to FirefoxHeadless."
+        export MOZ_HEADLESS=1
+        export KARMA_BROWSER=FirefoxHeadless
     fi
 
-    export DISPLAY=:99
-    Xvfb :99 -screen 0 1920x1080x24 -nolisten tcp &
-    XVFB_PID=$!
-    echo "Starting Xvfb process $XVFB_PID"
-    export KARMA_BROWSER=Firefox
-else
-    echo "Xvfb not found. Falling back to FirefoxHeadless."
-    export MOZ_HEADLESS=1
-    export KARMA_BROWSER=FirefoxHeadless
+    yarn web
 fi
-
-yarn web
 cd dist && zip -r ../target/${ZIP_FILE_NAME}.zip *
 
 
